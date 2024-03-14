@@ -30,9 +30,19 @@ const toDoAddSlice = createSlice({
       );
       localStorage.setItem("toDoList", JSON.stringify(state.toDoList)); // Update localStorage after deleting todo
     },
+    editToDo: (state, action) => {
+      const { id, title, priority } = action.payload;
+      const todoToUpdate = state.toDoList.find((todo) => todo.id === id);
+      if (todoToUpdate) {
+        todoToUpdate.title = title;
+        todoToUpdate.priority = priority;
+        localStorage.setItem("toDoList", JSON.stringify(state)); // Update localStorage after update todo
+      }
+    },
   },
 });
 
-export const { addToDo, toggleToDo, deleteToDo } = toDoAddSlice.actions;
+export const { addToDo, toggleToDo, deleteToDo, editToDo } =
+  toDoAddSlice.actions;
 
 export default toDoAddSlice.reducer;
