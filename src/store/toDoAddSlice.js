@@ -36,7 +36,7 @@ const toDoAddSlice = createSlice({
       if (todoToUpdate) {
         todoToUpdate.title = title;
         todoToUpdate.priority = priority;
-        localStorage.setItem("toDoList", JSON.stringify(state)); // Update localStorage after update todo
+        localStorage.setItem("toDoList", JSON.stringify(state.toDoList)); // Update localStorage after update todo
       }
     },
   },
