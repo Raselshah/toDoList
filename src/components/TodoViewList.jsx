@@ -1,5 +1,5 @@
 import { Button, Checkbox, List, Select } from "antd";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TodoInputModal } from "../common/TodoInputModal";
 import { deleteToDo, editToDo, toggleToDo } from "../store/toDoAddSlice";
@@ -34,6 +34,10 @@ export const TodoViewList = () => {
   const filteredtodos =
     filter === "all" ? todos : todos.filter((task) => task.priority === filter);
 
+  const totalTodoCount = useMemo(() => {
+    return todos?.length || 0;
+  }, [todos]);
+
   return (
     <div style={{ maxWidth: 400, margin: "auto" }}>
       <Select
@@ -46,6 +50,8 @@ export const TodoViewList = () => {
         <Select.Option value="medium">Medium Priority</Select.Option>
         <Select.Option value="high">High Priority</Select.Option>
       </Select>
+
+      <h2 style={{ fontSize: "16px" }}>Total Todo : {totalTodoCount}</h2>
 
       <List
         dataSource={filteredtodos}
