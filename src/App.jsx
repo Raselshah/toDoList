@@ -1,12 +1,12 @@
 import React from "react";
 import { TaskAddForm } from "./components/TaskAddFrom";
-import { TaskViewList } from "./components/TaskViewList";
+import { TodoViewList } from "./components/TodoViewList";
 
 const App = () => {
   return (
     <div>
       <h1>Todo List</h1>
-      <TaskViewList />
+      <TodoViewList />
       <TaskAddForm />
     </div>
   );

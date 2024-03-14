@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const { Option } = Select;
 
-export const TaskViewList = () => {
+export const TodoViewList = () => {
   const [filter, setFilter] = useState("all");
 
   return (
