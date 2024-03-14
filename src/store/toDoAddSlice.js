@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  toDoList: [],
+  toDoList: JSON.parse(localStorage.getItem("toDoList")) || [], // Retrieve initial state from localStorage if available todo list
 };
 
 const toDoAddSlice = createSlice({
@@ -14,18 +14,21 @@ const toDoAddSlice = createSlice({
         id: Date.now(),
         completed: false,
       });
+      localStorage.setItem("toDoList", JSON.stringify(state.toDoList)); // Update localStorage after adding todo
     },
     toggleToDo: (state, action) => {
       const { id } = action.payload;
       const todo = state.toDoList.find((todo) => todo.id === id);
       if (todo) {
         todo.completed = !todo.completed;
+        localStorage.setItem("toDoList", JSON.stringify(state.toDoList)); // Update localStorage after toggling todo
       }
     },
     deleteToDo: (state, action) => {
       state.toDoList = state.toDoList.filter(
         (todo) => todo.id !== action.payload
       );
+      localStorage.setItem("toDoList", JSON.stringify(state.toDoList)); // Update localStorage after deleting todo
     },
   },
 });
