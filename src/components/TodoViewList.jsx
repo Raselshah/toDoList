@@ -7,7 +7,7 @@ import { deleteToDo, editToDo, toggleToDo } from "../store/toDoAddSlice";
 const { Option } = Select;
 
 export const TodoViewList = () => {
-  const todos = useSelector((state) => state.toDoList.toDoList);
+  const todos = useSelector((state) => state?.toDoList?.toDoList);
   const [filter, setFilter] = useState("all");
   const dispatch = useDispatch();
   const [editModalVisible, setEditModalVisible] = useState(false);
@@ -32,7 +32,9 @@ export const TodoViewList = () => {
   };
 
   const filteredtodos =
-    filter === "all" ? todos : todos.filter((task) => task.priority === filter);
+    filter === "all"
+      ? todos
+      : todos?.filter((task) => task.priority === filter);
 
   const totalTodoCount = useMemo(() => {
     return todos?.length || 0;
@@ -59,9 +61,9 @@ export const TodoViewList = () => {
           <List.Item
             style={{
               backgroundColor:
-                todo.priority === "high"
+                todo?.priority === "high"
                   ? "#FFCCCC"
-                  : todo.priority === "medium"
+                  : todo?.priority === "medium"
                   ? "#FFFFCC"
                   : "#CCE5FF",
               borderRadius: "8px",
@@ -69,7 +71,7 @@ export const TodoViewList = () => {
             }}
             actions={[
               <Checkbox
-                checked={todo.completed}
+                checked={todo?.completed}
                 onChange={() => handleToggleTodo(todo.id)}
               />,
               <Button key="edit" onClick={() => handleEdit(todo)}>
@@ -81,8 +83,8 @@ export const TodoViewList = () => {
             ]}
           >
             <List.Item.Meta
-              title={todo.title}
-              description={`Priority: ${todo.priority}`}
+              title={todo?.title}
+              description={`Priority: ${todo?.priority}`}
               style={{ padding: "10px" }}
             />
           </List.Item>
