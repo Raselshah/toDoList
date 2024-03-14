@@ -1,6 +1,7 @@
 import { Button, Form, Input, Modal, Select } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { TodoInputModal } from "../common/TodoInputModal";
 import { addToDo } from "../store/toDoAddSlice";
 
 const { Option } = Select;
@@ -35,6 +36,15 @@ export const TaskAddForm = () => {
           Add New Todo
         </Button>
       </div>
+
+      <TodoInputModal
+        title={"Add Todo"}
+        todoModalVisible={modalVisible}
+        setTodoModalVisible={handleCancel}
+        handleTodoSubmit={handleFormSubmit}
+        editedToDo={""}
+        setEditedToDo={""}
+      />
       <Modal
         title="Add Todo"
         visible={modalVisible}

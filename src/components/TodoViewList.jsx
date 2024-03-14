@@ -1,6 +1,7 @@
-import { Button, Checkbox, Form, Input, List, Modal, Select } from "antd";
+import { Button, Checkbox, List, Select } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { TodoInputModal } from "../common/TodoInputModal";
 import { deleteToDo, editToDo, toggleToDo } from "../store/toDoAddSlice";
 
 const { Option } = Select;
@@ -82,35 +83,14 @@ export const TodoViewList = () => {
         )}
       />
 
-      <Modal
-        title="Edit Todo"
-        visible={editModalVisible}
-        onCancel={() => setEditModalVisible(false)}
-        onOk={handleEditSubmit}
-      >
-        <Form layout="vertical">
-          <Form.Item label="Title">
-            <Input
-              value={editedToDo.title}
-              onChange={(e) =>
-                setEditedToDo({ ...editedToDo, title: e.target.value })
-              }
-            />
-          </Form.Item>
-          <Form.Item label="Priority">
-            <Select
-              value={editedToDo.priority}
-              onChange={(value) =>
-                setEditedToDo({ ...editedToDo, priority: value })
-              }
-            >
-              <Option value="low">Low</Option>
-              <Option value="medium">Medium</Option>
-              <Option value="high">High</Option>
-            </Select>
-          </Form.Item>
-        </Form>
-      </Modal>
+      <TodoInputModal
+        title={"Edit Todo"}
+        todoModalVisible={editModalVisible}
+        setTodoModalVisible={setEditModalVisible}
+        handleTodoSubmit={handleEditSubmit}
+        editedToDo={editedToDo}
+        setEditedToDo={setEditedToDo}
+      />
     </div>
   );
 };
