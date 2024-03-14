@@ -2,6 +2,8 @@
 
 This is a simple Todo List application built using React, Redux Toolkit, and Ant Design. The application allows users to add, edit, and delete toDoList, and also includes a basic filtering system based on task priority.
 
+Visit to the deployed version of the app [here](https://to-do-list-for-m360.vercel.app/).
+
 ## Features
 
 - Display a list of toDoList with their respective status (completed or not completed).
